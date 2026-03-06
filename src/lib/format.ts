@@ -13,11 +13,16 @@ export function formatMarketCap(valueInMillions: number): string {
 }
 
 export function formatPercent(value: number | undefined): string {
-	if (value === undefined) return "\u2014";
-	return `${value.toFixed(1)}%`;
+	if (value === undefined) return "-";
+	const formatted = `${value.toFixed(1)}%`;
+	return value > 0
+		? `+${formatted}`
+		: value === 0
+			? `+${formatted}`
+			: formatted;
 }
 
 export function formatPe(value: number | undefined): string {
-	if (value === undefined) return "\u2014";
+	if (value === undefined) return "-";
 	return value.toFixed(2);
 }

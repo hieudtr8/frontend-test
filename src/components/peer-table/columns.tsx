@@ -2,19 +2,28 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { formatMarketCap, formatPe, formatPercent } from "../../lib/format.ts";
 import type { Company } from "../../types/company.ts";
 
+const MAX_SELECTION = 4;
+
 const col = createColumnHelper<Company>();
 
 export const columns = [
 	col.display({
 		id: "select",
-		header: "",
-		size: 40,
+		header: ({ table }) => {
+			const count = Object.keys(table.getState().rowSelection).length;
+			return (
+				<span className="text-slate-400">
+					({count}/{MAX_SELECTION})
+				</span>
+			);
+		},
+		size: 30,
 		cell: ({ row }) => {
 			const checked = row.getIsSelected();
 			const disabled = !row.getCanSelect();
 			return (
 				<label
-					className={`flex size-5 items-center justify-center rounded-full border-2 transition-colors ${
+					className={`flex size-5 items-center justify-center rounded border-2 transition-colors ${
 						checked
 							? "border-blue-600 bg-blue-600 text-white"
 							: disabled
@@ -71,9 +80,14 @@ export const columns = [
 				>
 					{row.original.symbolCode.slice(0, 2)}
 				</span>
-				<span className="truncate font-medium text-slate-900">
-					{row.original.companyName}
-				</span>
+				<div className="min-w-0">
+					<div className="truncate font-medium text-slate-900">
+						{row.original.companyName}
+					</div>
+					<div className="text-xs text-slate-400">
+						{row.original.symbolCode}
+					</div>
+				</div>
 			</div>
 		),
 	}),

@@ -2,6 +2,7 @@ import {
 	type IChartApi,
 	type ISeriesApi,
 	LineSeries,
+	LineStyle,
 	type SeriesType,
 	createChart,
 } from "lightweight-charts";
@@ -31,7 +32,7 @@ export function useLightweightChart({
 			layout: {
 				background: { color: "transparent" },
 				textColor: "#64748b",
-				fontFamily: "system-ui, sans-serif",
+				fontFamily: "'Inter', sans-serif",
 			},
 			grid: {
 				vertLines: { color: "#f1f5f9" },
@@ -80,11 +81,13 @@ export function useLightweightChart({
 		seriesListRef.current = [];
 
 		// Add new series
-		for (const ts of timeseries) {
+		for (let i = 0; i < timeseries.length; i++) {
+			const ts = timeseries[i];
 			const color = colorMap.get(ts.symbolCode) ?? "#94a3b8";
 			const series = chart.addSeries(LineSeries, {
 				color,
 				lineWidth: 2,
+				lineStyle: i % 2 === 0 ? LineStyle.Solid : LineStyle.Dashed,
 				priceFormat: {
 					type: "custom",
 					formatter: (price: number) => `${price.toFixed(2)}%`,

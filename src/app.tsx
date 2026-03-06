@@ -90,7 +90,7 @@ export function App() {
 							isLoading={isLoading}
 						/>
 					</div>
-					<p className="pb-4 text-center text-xs text-slate-400">
+					<p className="pb-4 text-center text-xs italic text-slate-400">
 						Select up to 4 companies in the table above to customize the chart
 						view.
 					</p>

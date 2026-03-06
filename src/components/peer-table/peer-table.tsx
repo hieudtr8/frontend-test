@@ -43,19 +43,15 @@ export function PeerTable({
 	});
 
 	return (
-		<div className="overflow-x-auto">
+		<div className="overflow-x-auto px-5">
 			<table className="w-full text-sm">
 				<thead>
 					{table.getHeaderGroups().map((hg) => (
-						<tr key={hg.id} className="border-b border-slate-100">
+						<tr key={hg.id} className="border-b border-slate-200 bg-slate-50">
 							{hg.headers.map((header) => (
 								<th
 									key={header.id}
-									className={`px-4 py-3 text-xs font-medium tracking-wide text-slate-400 uppercase ${
-										header.id === "companyName" || header.id === "select"
-											? "text-left"
-											: "text-right"
-									}`}
+									className={`py-3 text-left text-xs font-medium text-slate-600 ${header.id === "select" ? "pl-1 pr-0" : "px-4"}`}
 									style={{ width: header.getSize() }}
 								>
 									{header.isPlaceholder
@@ -80,12 +76,7 @@ export function PeerTable({
 							{row.getVisibleCells().map((cell) => (
 								<td
 									key={cell.id}
-									className={`px-4 py-3 ${
-										cell.column.id === "companyName" ||
-										cell.column.id === "select"
-											? "text-left"
-											: "text-right"
-									}`}
+									className={`py-3 text-left ${cell.column.id === "select" ? "pl-3 pr-0" : "px-4"}`}
 								>
 									{flexRender(cell.column.columnDef.cell, cell.getContext())}
 								</td>

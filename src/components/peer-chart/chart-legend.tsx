@@ -22,7 +22,7 @@ export function ChartLegend({
 				return (
 					<div key={sym} className="flex items-center gap-2">
 						<span
-							className="size-2.5 shrink-0 rounded-full"
+							className="size-2.5 shrink-0 rounded-sm"
 							style={{ backgroundColor: color }}
 						/>
 						<span className="text-slate-700">

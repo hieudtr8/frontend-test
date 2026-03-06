@@ -24,6 +24,9 @@ export function PeerChart({
 	return (
 		<div className="relative">
 			<div ref={containerRef} className="w-full" />
+			<span className="pointer-events-none absolute top-1/2 right-0 -translate-y-1/2 translate-x-6 -rotate-90 text-xs text-slate-400">
+				Performance (%)
+			</span>
 
 			<ChartLegend
 				symbols={selectedSymbols}
