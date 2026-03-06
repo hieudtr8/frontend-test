@@ -1,0 +1,101 @@
+[
+	{
+		"symbolCode": "NVDA",
+		"name": "NVIDIA CORP",
+		"companyName": "NVIDIA Corp",
+		"currency": "USD",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/NVDA.svg",
+		"marketCapitalization": 4445349.5,
+		"peTtm": 37.02,
+		"revenueGrowthTtmYoy": 65.47,
+		"currentDividendYieldTtm": 0.02
+	},
+	{
+		"symbolCode": "AVGO",
+		"name": "BROADCOM INC",
+		"companyName": "Broadcom Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AVGO.svg",
+		"marketCapitalization": 1505496.8,
+		"peTtm": 65.1,
+		"revenueGrowthTtmYoy": 23.87,
+		"currentDividendYieldTtm": 0.74
+	},
+	{
+		"symbolCode": "MU",
+		"name": "MICRON TECHNOLOGY INC",
+		"companyName": "Micron Technology Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/MU.svg",
+		"marketCapitalization": 451070.34,
+		"peTtm": 37.88,
+		"revenueGrowthTtmYoy": 45.43,
+		"currentDividendYieldTtm": 0.12
+	},
+	{
+		"symbolCode": "AMD",
+		"name": "ADVANCED MICRO DEVICES",
+		"companyName": "Advanced Micro Devices Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/AMD.svg",
+		"marketCapitalization": 329457.12,
+		"peTtm": 76,
+		"revenueGrowthTtmYoy": 34.34
+	},
+	{
+		"symbolCode": "INTC",
+		"name": "INTEL CORP",
+		"companyName": "Intel Corp",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/INTC.svg",
+		"marketCapitalization": 227672.1,
+		"revenueGrowthTtmYoy": -0.47,
+		"currentDividendYieldTtm": 0
+	},
+	{
+		"symbolCode": "TXN",
+		"name": "TEXAS INSTRUMENTS INC",
+		"companyName": "Texas Instruments Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/TXN.svg",
+		"marketCapitalization": 184378,
+		"peTtm": 36.87,
+		"revenueGrowthTtmYoy": 13.05,
+		"currentDividendYieldTtm": 2.71
+	},
+	{
+		"symbolCode": "ADI",
+		"name": "ANALOG DEVICES INC",
+		"companyName": "Analog Devices Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ADI.svg",
+		"marketCapitalization": 166726.6,
+		"peTtm": 61.59,
+		"revenueGrowthTtmYoy": 25.91,
+		"currentDividendYieldTtm": 1.17
+	},
+	{
+		"symbolCode": "QCOM",
+		"name": "QUALCOMM INC",
+		"companyName": "Qualcomm Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/QCOM.svg",
+		"marketCapitalization": 148857.17,
+		"peTtm": 27.75,
+		"revenueGrowthTtmYoy": 10.25,
+		"currentDividendYieldTtm": 2.56
+	},
+	{
+		"symbolCode": "MRVL",
+		"name": "MARVELL TECHNOLOGY INC",
+		"companyName": "Marvell Technology Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/MRVL.svg",
+		"marketCapitalization": 68111.62,
+		"peTtm": 27.53,
+		"revenueGrowthTtmYoy": 44.95,
+		"currentDividendYieldTtm": 0.3
+	},
+	{
+		"symbolCode": "MPWR",
+		"name": "MONOLITHIC POWER SYSTEMS INC",
+		"companyName": "Monolithic Power Systems Inc",
+		"logo": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/MPWR.svg",
+		"marketCapitalization": 53824.24,
+		"peTtm": 87.39,
+		"revenueGrowthTtmYoy": 26.43,
+		"currentDividendYieldTtm": 0.51
+	}
+]
