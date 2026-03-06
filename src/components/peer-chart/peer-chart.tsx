@@ -24,7 +24,7 @@ export function PeerChart({
 	return (
 		<div className="relative">
 			<div ref={containerRef} className="w-full" />
-			<span className="pointer-events-none absolute top-1/2 right-[-20px] -translate-y-1/2 -rotate-90 text-xs text-slate-400">
+			<span className="pointer-events-none absolute top-1/2 right-0 -translate-y-1/2 -rotate-90 text-xs text-slate-400">
 				Performance (%)
 			</span>
 
