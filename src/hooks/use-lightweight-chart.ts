@@ -35,8 +35,8 @@ export function useLightweightChart({
 				fontFamily: "'Inter', sans-serif",
 			},
 			grid: {
-				vertLines: { color: "#f1f5f9" },
-				horzLines: { color: "#f1f5f9" },
+				vertLines: { color: "#e2e8f0" },
+				horzLines: { color: "#e2e8f0" },
 			},
 			rightPriceScale: {
 				borderVisible: false,
@@ -87,10 +87,10 @@ export function useLightweightChart({
 			const series = chart.addSeries(LineSeries, {
 				color,
 				lineWidth: 2,
-				lineStyle: i % 2 === 0 ? LineStyle.Solid : LineStyle.Dashed,
+				lineStyle: i < 2 ? LineStyle.Solid : LineStyle.Dashed,
 				priceFormat: {
 					type: "custom",
-					formatter: (price: number) => `${price.toFixed(2)}%`,
+					formatter: (price: number) => `${Math.round(price)}%`,
 				},
 			});
 			series.setData(

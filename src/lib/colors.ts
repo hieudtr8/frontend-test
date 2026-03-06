@@ -1,8 +1,8 @@
 const SERIES_PALETTE = [
-	"#2563eb", // blue
-	"#dc2626", // red
-	"#16a34a", // green
-	"#9333ea", // purple
+	"#3b82f6", // blue-500
+	"#ef4444", // red-500
+	"#2dd4bf", // teal-400
+	"#a78bfa", // violet-400
 ] as const;
 
 export type ColorMap = Map<string, string>;
