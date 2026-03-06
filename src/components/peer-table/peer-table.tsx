@@ -1,13 +1,12 @@
+import { MAX_PEER_SELECTION } from "@/config/constants";
+import type { Company } from "@/types/company";
 import {
 	type RowSelectionState,
 	flexRender,
 	getCoreRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
-import type { Company } from "../../types/company.ts";
 import { columns } from "./columns.tsx";
-
-const MAX_SELECTION = 4;
 
 interface PeerTableProps {
 	data: Company[];
@@ -31,12 +30,12 @@ export function PeerTable({
 				typeof updaterOrValue === "function"
 					? updaterOrValue(rowSelection)
 					: updaterOrValue;
-			if (Object.keys(next).length > MAX_SELECTION) return;
+			if (Object.keys(next).length > MAX_PEER_SELECTION) return;
 			onRowSelectionChange(next);
 		},
 		enableRowSelection: (row) => {
 			if (row.getIsSelected()) return true;
-			return selectedCount < MAX_SELECTION;
+			return selectedCount < MAX_PEER_SELECTION;
 		},
 		getCoreRowModel: getCoreRowModel(),
 		getRowId: (row) => row.symbolCode,

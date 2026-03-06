@@ -1,3 +1,6 @@
+import type { SymbolTimeseries } from "@/api/mock-api";
+import { DEFAULT_SERIES_COLOR } from "@/config/constants";
+import type { ColorMap } from "@/lib/colors";
 import {
 	type IChartApi,
 	type ISeriesApi,
@@ -7,8 +10,6 @@ import {
 	createChart,
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
-import type { SymbolTimeseries } from "../api/mock-api.ts";
-import type { ColorMap } from "../lib/colors.ts";
 
 interface UseLightweightChartOptions {
 	timeseries: SymbolTimeseries[];
@@ -83,7 +84,7 @@ export function useLightweightChart({
 		// Add new series
 		for (let i = 0; i < timeseries.length; i++) {
 			const ts = timeseries[i];
-			const color = colorMap.get(ts.symbolCode) ?? "#94a3b8";
+			const color = colorMap.get(ts.symbolCode) ?? DEFAULT_SERIES_COLOR;
 			const series = chart.addSeries(LineSeries, {
 				color,
 				lineWidth: 2,

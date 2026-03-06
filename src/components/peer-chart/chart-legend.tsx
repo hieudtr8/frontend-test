@@ -1,5 +1,6 @@
-import type { ColorMap } from "../../lib/colors.ts";
-import type { Company } from "../../types/company.ts";
+import { DEFAULT_SERIES_COLOR } from "@/config/constants";
+import type { ColorMap } from "@/lib/colors";
+import type { Company } from "@/types/company";
 
 interface ChartLegendProps {
 	symbols: string[];
@@ -18,7 +19,7 @@ export function ChartLegend({
 		<div className="pointer-events-none absolute top-3 left-3 z-10 flex flex-col gap-1 text-xs">
 			{symbols.map((sym) => {
 				const company = companies.find((c) => c.symbolCode === sym);
-				const color = colorMap.get(sym) ?? "#94a3b8";
+				const color = colorMap.get(sym) ?? DEFAULT_SERIES_COLOR;
 				return (
 					<div key={sym} className="flex items-center gap-2">
 						<span

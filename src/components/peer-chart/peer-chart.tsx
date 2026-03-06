@@ -1,7 +1,8 @@
-import type { SymbolTimeseries } from "../../api/mock-api.ts";
-import { useLightweightChart } from "../../hooks/use-lightweight-chart.ts";
-import type { ColorMap } from "../../lib/colors.ts";
-import type { Company } from "../../types/company.ts";
+import type { SymbolTimeseries } from "@/api/mock-api";
+import { Spinner } from "@/components/ui/spinner";
+import { useLightweightChart } from "@/hooks/use-lightweight-chart";
+import type { ColorMap } from "@/lib/colors";
+import type { Company } from "@/types/company";
 import { ChartLegend } from "./chart-legend.tsx";
 
 interface PeerChartProps {
@@ -10,6 +11,7 @@ interface PeerChartProps {
 	companies: Company[];
 	colorMap: ColorMap;
 	isLoading: boolean;
+	error: string | null;
 }
 
 export function PeerChart({
@@ -18,6 +20,7 @@ export function PeerChart({
 	companies,
 	colorMap,
 	isLoading,
+	error,
 }: PeerChartProps) {
 	const containerRef = useLightweightChart({ timeseries, colorMap });
 
@@ -35,34 +38,21 @@ export function PeerChart({
 			/>
 
 			{isLoading && (
-				<div className="absolute inset-0 flex items-center justify-center z-10 bg-white/80 backdrop-blur-sm">
+				<div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80 backdrop-blur-sm">
 					<div className="flex items-center gap-2 text-base font-medium text-slate-600">
-						<svg
-							className="size-5 animate-spin"
-							viewBox="0 0 24 24"
-							fill="none"
-							aria-hidden="true"
-						>
-							<circle
-								className="opacity-25"
-								cx="12"
-								cy="12"
-								r="10"
-								stroke="currentColor"
-								strokeWidth="4"
-							/>
-							<path
-								className="opacity-75"
-								fill="currentColor"
-								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-							/>
-						</svg>
+						<Spinner />
 						Loading...
 					</div>
 				</div>
 			)}
 
-			{selectedSymbols.length === 0 && !isLoading && (
+			{error && !isLoading && (
+				<div className="absolute inset-0 z-10 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+					<p className="text-sm text-red-500">{error}</p>
+				</div>
+			)}
+
+			{selectedSymbols.length === 0 && !isLoading && !error && (
 				<div className="absolute inset-0 flex items-center justify-center">
 					<p className="text-sm text-slate-400">
 						Select companies above to view performance

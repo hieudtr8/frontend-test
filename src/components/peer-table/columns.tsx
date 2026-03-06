@@ -1,8 +1,7 @@
+import { MAX_PEER_SELECTION } from "@/config/constants";
+import { formatMarketCap, formatPe, formatPercent } from "@/lib/format";
+import type { Company } from "@/types/company";
 import { createColumnHelper } from "@tanstack/react-table";
-import { formatMarketCap, formatPe, formatPercent } from "../../lib/format.ts";
-import type { Company } from "../../types/company.ts";
-
-const MAX_SELECTION = 4;
 
 const col = createColumnHelper<Company>();
 
@@ -13,7 +12,7 @@ export const columns = [
 			const count = Object.keys(table.getState().rowSelection).length;
 			return (
 				<span className="text-slate-400">
-					({count}/{MAX_SELECTION})
+					({count}/{MAX_PEER_SELECTION})
 				</span>
 			);
 		},
