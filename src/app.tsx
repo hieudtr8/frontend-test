@@ -1,8 +1,8 @@
 import type { RowSelectionState } from "@tanstack/react-table";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-	type SymbolTimeseries,
 	fetchTimeseriesBySymbols,
+	type SymbolTimeseries,
 } from "./api/mock-api.ts";
 import { PeerChart } from "./components/peer-chart/peer-chart.tsx";
 import { PeerTable } from "./components/peer-table/peer-table.tsx";
@@ -81,7 +81,7 @@ export function App() {
 							Peer Performance
 						</h2>
 					</div>
-					<div className="px-5 pb-2">
+					<div className="pl-5 pr-14 pb-2">
 						<PeerChart
 							timeseries={timeseries}
 							selectedSymbols={selectedSymbols}
@@ -90,7 +90,7 @@ export function App() {
 							isLoading={isLoading}
 						/>
 					</div>
-					<p className="pb-4 text-center text-xs italic text-slate-400">
+					<p className="pb-4 text-center text-xs text-slate-400">
 						Select up to 4 companies in the table above to customize the chart
 						view.
 					</p>

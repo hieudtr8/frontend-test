@@ -24,7 +24,7 @@ export function PeerChart({
 	return (
 		<div className="relative">
 			<div ref={containerRef} className="w-full" />
-			<span className="pointer-events-none absolute top-1/2 right-0 -translate-y-1/2 -rotate-90 text-xs text-slate-400">
+			<span className="pointer-events-none absolute top-1/2 -right-14 -translate-y-1/2 -rotate-90 whitespace-nowrap text-xs text-slate-400">
 				Performance (%)
 			</span>
 
@@ -35,10 +35,10 @@ export function PeerChart({
 			/>
 
 			{isLoading && (
-				<div className="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-[1px]">
-					<div className="flex items-center gap-2 text-sm text-slate-500">
+				<div className="absolute inset-0 flex items-center justify-center z-10 bg-white/80 backdrop-blur-sm">
+					<div className="flex items-center gap-2 text-base font-medium text-slate-600">
 						<svg
-							className="size-4 animate-spin"
+							className="size-5 animate-spin"
 							viewBox="0 0 24 24"
 							fill="none"
 							aria-hidden="true"

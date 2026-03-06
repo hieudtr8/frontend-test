@@ -69,7 +69,7 @@ export function PeerTable({
 					{table.getRowModel().rows.map((row) => (
 						<tr
 							key={row.id}
-							className={`border-b border-slate-50 transition-colors ${
+							className={`border-b border-slate-200 transition-colors ${
 								row.getIsSelected() ? "bg-blue-50/60" : "hover:bg-slate-50/80"
 							}`}
 						>
