@@ -2,45 +2,56 @@ import {
 	type SymbolTimeseries,
 	fetchTimeseriesBySymbols,
 } from "@/api/mock-api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function usePeerTimeseries(selectedSymbols: string[]) {
-	const [timeseries, setTimeseries] = useState<SymbolTimeseries[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const cache = useRef<Map<string, SymbolTimeseries>>(new Map());
+	const inFlightRef = useRef<Set<string>>(new Set());
+	const [pendingSymbols, setPendingSymbols] = useState<Set<string>>(new Set());
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (selectedSymbols.length === 0) {
-			setTimeseries([]);
-			setIsLoading(false);
 			setError(null);
 			return;
 		}
 
-		let cancelled = false;
-		setIsLoading(true);
+		const toFetch = selectedSymbols.filter(
+			(s) => !cache.current.has(s) && !inFlightRef.current.has(s),
+		);
+
+		if (toFetch.length === 0) return;
+
+		for (const s of toFetch) {
+			inFlightRef.current.add(s);
+		}
+		setPendingSymbols(new Set(inFlightRef.current));
 		setError(null);
 
-		fetchTimeseriesBySymbols([...selectedSymbols])
+		fetchTimeseriesBySymbols(toFetch)
 			.then((data) => {
-				if (!cancelled) {
-					setTimeseries(data);
-					setIsLoading(false);
+				for (const ts of data) {
+					cache.current.set(ts.symbolCode, ts);
+					inFlightRef.current.delete(ts.symbolCode);
 				}
+				setPendingSymbols(new Set(inFlightRef.current));
 			})
 			.catch((err: unknown) => {
-				if (!cancelled) {
-					setError(
-						err instanceof Error ? err.message : "Failed to fetch timeseries",
-					);
-					setIsLoading(false);
+				for (const s of toFetch) {
+					inFlightRef.current.delete(s);
 				}
+				setPendingSymbols(new Set(inFlightRef.current));
+				setError(
+					err instanceof Error ? err.message : "Failed to fetch timeseries",
+				);
 			});
-
-		return () => {
-			cancelled = true;
-		};
 	}, [selectedSymbols]);
+
+	const timeseries = selectedSymbols
+		.map((s) => cache.current.get(s))
+		.filter((ts): ts is SymbolTimeseries => ts !== undefined);
+
+	const isLoading = selectedSymbols.some((s) => pendingSymbols.has(s));
 
 	return { timeseries, isLoading, error } as const;
 }
