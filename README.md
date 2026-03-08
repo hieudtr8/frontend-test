@@ -41,19 +41,33 @@ pnpm preview
 
 ```
 src/
-├── api/mock-api.ts              # Provided mock API (3s latency, random walk timeseries)
-├── app.tsx                      # Main page — state owner, data flow orchestrator
+├── api/mock-api.ts                # Provided mock API (3s latency, random walk timeseries)
+├── main.tsx                       # Entry point, ErrorBoundary wrapper
+├── app.tsx                        # Root layout shell
+├── pages/
+│   └── peer-comparison.tsx        # Page orchestrator — imports hooks, passes props down
 ├── components/
-│   ├── peer-table/              # Table with TanStack Table
-│   ├── peer-chart/              # Chart with Lightweight Charts + legend
-│   └── ui/card.tsx              # Shared card wrapper
+│   ├── peer-table/
+│   │   ├── peer-table.tsx         # TanStack Table with row selection + max enforcement
+│   │   └── columns.tsx            # Column definitions, image fallback, formatting
+│   ├── peer-chart/
+│   │   ├── peer-chart.tsx         # Chart container with loading/error/empty states
+│   │   └── chart-legend.tsx       # Color-coded legend synced with selection
+│   └── ui/
+│       ├── card.tsx               # Shared card wrapper
+│       ├── spinner.tsx            # Loading spinner
+│       └── error-boundary.tsx     # React error boundary
 ├── hooks/
-│   └── use-lightweight-chart.ts # Chart lifecycle hook (create/update/destroy)
+│   ├── use-lightweight-chart.ts   # Chart lifecycle (create/resize/destroy + series updates)
+│   ├── use-peer-selection.ts      # Row selection state + color synchronization
+│   ├── use-peer-timeseries.ts     # Data fetching with caching and in-flight dedup
+│   └── use-color-map.ts           # Stable color assignment (ref+state pattern)
 ├── lib/
-│   ├── colors.ts                # Stable color assignment for chart series
-│   └── format.ts                # Number formatting (market cap, percentages)
-├── types/company.ts             # Company interface
-└── data/companies.json          # 10 semiconductor companies
+│   ├── colors.ts                  # Pure function: updateColorMap()
+│   └── format.ts                  # Number formatting (market cap, percentages)
+├── config/constants.ts            # MAX_PEER_SELECTION, DEFAULT_SERIES_COLOR
+├── types/company.ts               # Company interface
+└── data/companies.json            # 10 semiconductor companies
 ```
 
 ## Design Decisions
@@ -63,3 +77,7 @@ src/
 - **Stable color map via `useRef`**: Prevents color shifting when middle rows are deselected
 - **Fetch cancellation**: Boolean flag in `useEffect` cleanup prevents stale data from overwriting newer selections
 - **`enableRowSelection` callback**: Disables checkboxes at the source rather than just rejecting state changes
+
+## AI Usage
+
+See [AI_USAGE.md](./AI_USAGE.md) for a detailed development journal covering tools used, architectural decisions, and implementation approach.
