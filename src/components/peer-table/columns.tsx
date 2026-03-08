@@ -22,7 +22,7 @@ export const columns = [
 			const disabled = !row.getCanSelect();
 			return (
 				<label
-					className={`flex size-5 items-center justify-center rounded border-2 transition-colors ${
+					className={`flex size-6 items-center justify-center rounded-md border-2 transition-colors ${
 						checked
 							? "border-blue-600 bg-blue-600 text-white"
 							: disabled
@@ -40,14 +40,14 @@ export const columns = [
 					{checked && (
 						<svg
 							viewBox="0 0 12 12"
-							className="size-3"
+							className="size-4.5"
 							fill="none"
 							aria-hidden="true"
 						>
 							<path
 								d="M2.5 6l2.5 2.5 4.5-5"
 								stroke="currentColor"
-								strokeWidth="1.5"
+								strokeWidth="2"
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							/>
