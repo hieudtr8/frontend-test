@@ -36,6 +36,8 @@ Chart creation is expensive. If I put everything in one effect that depends on `
 
 **Line style hierarchy.** First 2 series render as `LineStyle.Solid`, 3rd and 4th as `LineStyle.Dashed` (`src/hooks/use-lightweight-chart.ts:91`). This keeps the chart readable at 4 overlapping series — the eye naturally groups solid vs dashed lines.
 
+**Three-state chart overlay.** `PeerChart` (`src/components/peer-chart/peer-chart.tsx:40-61`) manages three mutually exclusive states as absolute-positioned overlays: loading (semi-opaque backdrop with blur + spinner), error (same overlay, red message), and empty (centered placeholder, no overlay). Conditional rendering order matters — error only renders when `!isLoading`, preventing both states from showing simultaneously.
+
 ## Phase 3: Integration & Color Stability
 
 Connected the flow: table selection -> fetch timeseries -> render chart. This is where the non-obvious problem surfaced.
@@ -55,6 +57,8 @@ Connected the flow: table selection -> fetch timeseries -> render chart. This is
 - `inFlightRef` (`Set<string>`) — tracks symbols currently being fetched
 
 On each selection change, the hook filters `selectedSymbols` to only fetch symbols not in cache AND not already in-flight. This prevents duplicate requests when a user rapidly clicks multiple rows. Cached data is served instantly on reselect — no loading spinner, no network request.
+
+**Partial loading, not binary.** `pendingSymbols` (`useState<Set>`, `src/hooks/use-peer-timeseries.ts:10`) syncs from `inFlightRef` after each fetch start/complete. `isLoading` is computed as `selectedSymbols.some(s => pendingSymbols.has(s))` — so if 2 of 4 symbols are cached and 2 are fetching, the chart renders cached data immediately while showing the loading overlay for the in-flight ones. The ref-to-state sync pattern: the ref handles dedup logic (no re-renders), state triggers the UI update for the overlay.
 
 Error handling cleans up `inFlightRef` entries on failure so the symbol can be retried, and surfaces the error message without corrupting cached data for other symbols.
 
