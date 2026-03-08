@@ -1,4 +1,4 @@
-# Quantli Frontend Test — Peer Comparison
+# Fanvia Frontend Test — Peer Comparison
 
 A React + TypeScript page with a **Peer Comparison Table** (TanStack Table) and **Peer Performance Chart** (Lightweight Charts) that updates based on row selection (max 4).
 

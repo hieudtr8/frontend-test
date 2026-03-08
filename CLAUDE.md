@@ -1,8 +1,8 @@
-# Quantli Frontend Test
+# Fanvia Frontend Test
 
 ## Project Overview
 
-Take-home frontend coding test for Quantli. Single-page React + TypeScript app with a **Peer Comparison Table** (TanStack Table) and **Peer Performance Chart** (Lightweight Charts).
+Take-home frontend coding test for Fanvia. Single-page React + TypeScript app with a **Peer Comparison Table** (TanStack Table) and **Peer Performance Chart** (Lightweight Charts).
 
 ## Tech Stack
 

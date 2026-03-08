@@ -1,5 +1,5 @@
 {
-	"name": "quantli-frontend-test",
+	"name": "fanvia-frontend-test",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -26,5 +26,6 @@
 		"tailwindcss": "^4.1.0",
 		"typescript": "~5.7.3",
 		"vite": "^6.3.0"
-	}
+	},
+	"packageManager": "pnpm@10.28.2"
 }
