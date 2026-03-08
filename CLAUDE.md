@@ -26,15 +26,16 @@ pnpm check:fix    # Auto-fix Biome issues
 
 ## Architecture
 
-- State lives in `App` — `rowSelection` (TanStack Table state) and `timeseries` (fetched chart data)
+- State lives in `PeerComparisonPage` — selection via `usePeerSelection`, data via `usePeerTimeseries`
 - No state management library — `useState` only (intentional for this scope)
 - `useLightweightChart` hook manages chart lifecycle via refs (create/update/destroy)
 - Stable color assignment via `useRef<Map>` — prevents color shifting on deselection
-- Mock API has 3s latency — fetch cancellation via boolean flag in `useEffect` cleanup
+- Mock API has 3s latency — in-flight dedup via `Set` ref prevents duplicate fetches
 
 ## Key Files
 
-- `src/app.tsx` — Main page, state owner, data flow orchestrator
+- `src/app.tsx` — Layout shell
+- `src/pages/peer-comparison.tsx` — Page orchestrator, state owner, data flow coordinator
 - `src/components/peer-table/` — Table with TanStack Table
 - `src/components/peer-chart/` — Chart with Lightweight Charts
 - `src/hooks/use-lightweight-chart.ts` — Chart lifecycle hook

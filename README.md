@@ -30,12 +30,12 @@ pnpm preview
 ## Features
 
 - **Peer Comparison Table**: 10 semiconductor companies with Market Cap, PE TTM, Revenue Growth, and Dividend Yield
-- **Row Selection**: Click circular checkboxes to select up to 4 companies
+- **Row Selection**: Click checkboxes to select up to 4 companies
 - **Dynamic Chart**: Selected companies' normalized performance (% change from start) rendered as line series
 - **Loading State**: 3-second mock API latency with loading spinner overlay
 - **Stable Colors**: Color assignments persist when toggling selections (no color shifting)
 - **Responsive**: Chart resizes with window, table scrolls horizontally on small screens
-- **Missing Data**: Gracefully shows em dash (—) for undefined fields
+- **Missing Data**: Gracefully shows dash (-) for undefined fields
 
 ## Project Structure
 
